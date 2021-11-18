@@ -32,25 +32,29 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
+                    <?php echo form_open_multipart('users/add_proses'); ?>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nama lengkap</label>
+                        <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Masukkan nama lengkap">
 
-                    <form action="<?= base_url('users/add_proses'); ?>" method="post">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Nama lengkap</label>
-                            <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Masukkan nama lengkap">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Alamat email</label>
+                        <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Masukkan email">
 
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Alamat email</label>
-                            <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Masukkan email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Masukkan password">
 
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Masukkan password">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Pilih Avatar</label>
+                        <input name="avatar" type="file" class="form-control-file">
 
-                        </div>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                        <a class="btn btn-secondary" href="<?= base_url('users/index'); ?>">Batal</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <a class="btn btn-secondary" href="<?= base_url('users/index'); ?>">Batal</a>
                     </form>
                 </div>
             </div>

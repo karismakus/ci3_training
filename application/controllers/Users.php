@@ -23,7 +23,10 @@ class Users extends CI_Controller
     {
         if ($this->session->userdata('isLogin') == true) {
 
-            $users = $this->db->get('users')->result();
+            $this->db->select('users.*, role');
+            $this->db->from('users');
+            $this->db->join('role', 'role.id = users.role_id');
+            $users =  $this->db->get()->result();
 
             $data['users'] = $users;
             $this->template->load('admin/template', 'admin/users_index', $data);
@@ -52,14 +55,25 @@ class Users extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->template->load('admin/template', 'admin/users_add');
         } else {
+            $config['upload_path']          = './uploads/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            // $config['max_size']             = 100;
+
+            $this->load->library('upload', $config);
+            $this->upload->do_upload('avatar');
+            $upload = $this->upload->data();
+
             $name = $this->input->post('name');
             $email = $this->input->post('email');
             $password = $this->input->post('password');
+            $avatar = $upload['file_name'];
 
             $this->db->insert('users', [
                 'name' => $name,
                 'email' => $email,
-                'password' => md5($password)
+                'password' => md5($password),
+                'avatar' => $avatar,
+                'role_id' => 1,
             ]);
 
             $this->session->set_flashdata('messageSuccess', 'User berhasil ditambahkan.');

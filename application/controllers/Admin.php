@@ -49,7 +49,7 @@ class Admin extends CI_Controller
 
         // var_dump($email, $password);
         if ($user) {
-            $this->session->set_userdata(['user_name' => $user['name'], 'isLogin' => true]);
+            $this->session->set_userdata(['user_name' => $user['name'], 'avatar' => $user['avatar'], 'isLogin' => true]);
             redirect('admin');
             // echo 'Login berhasil';
         } else {
@@ -61,6 +61,7 @@ class Admin extends CI_Controller
     public function logout()
     {
         $this->session->unset_userdata('user_name');
+        $this->session->unset_userdata('avatar');
         $this->session->set_userdata(['isLogin' => false]);
         $this->session->set_flashdata('messageSuccess', 'Berhasil logout');
         redirect('admin/login');
